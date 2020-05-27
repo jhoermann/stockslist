@@ -6,5 +6,10 @@ html, body {
 body { 
     margin: 0;
     font-family: Roboto, "Helvetica Neue", sans-serif;
+    background-color: #ededed;
+}
+
+.tile {
+    background-color: #fff;
     padding: 2rem;
 }

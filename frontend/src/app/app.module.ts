@@ -7,8 +7,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {MatTableModule} from '@angular/material/table';
-import {MatButtonModule} from '@angular/material/button'; 
+import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from '@angular/material/button'; 
+import { HttpClientModule }    from '@angular/common/http';
 
 import { ChartsModule } from 'ng2-charts';
 import { LineChartComponent } from './line-chart/line-chart.component';
@@ -29,7 +30,8 @@ import { DataTableComponent } from './data-table/data-table.component';
     BrowserAnimationsModule,
     ChartsModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,18 +1,25 @@
-import { Injectable } from '@nestjs/common';
+
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
 
-@Injectable()
-export class AppService {
-  getHello(): string {
+export default {
+  db: null,
+
+  connectDb(): void {
     const adapter = new FileSync('db.json')
-    const db = low(adapter)
+    this.db = low(adapter)
+  },
+
+  initDb(): void {
+    // Set database defaults
+    this.db.defaults({
+      Accounts: [],
+      Stocks: [],
+      Actions: [],
+      DividendDates: [],
+    }).write()
      
-    // Set some defaults
-    db.defaults({ posts: [], user: {} })
-      .write()
-     
-    // Add a post
+    /*// Add a post
     db.get('posts')
       .push({ id: 1, title: 'lowdb is awesome'})
       .write()
@@ -24,7 +31,6 @@ export class AppService {
     // Use .value() instead of .write() if you're only reading from db
     const post = db.get('posts')
       .find({ id: 1 })
-      .value()
-    return post;
+      .value()*/
   }
 }

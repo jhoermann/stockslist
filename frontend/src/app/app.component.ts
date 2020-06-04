@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Account } from './interfaces/account.interface'
 
 @Component({
   selector: 'app-root',
@@ -11,8 +12,16 @@ export class AppComponent {
   constructor(
     private http: HttpClient,
   ) {}
-  title = 'stockslist';
+
+  title = 'stockslist'
+  account: Account
+
   ngOnInit() {
-    let dbGet = this.http.get('http://localhost:3000/').subscribe(result => console.log(result))
+    this.getAccount()
+  }
+
+  getAccount():void {
+    this.http.get('http://localhost:3000/accounts/1')
+      .subscribe((account:Account) => this.account = account)
   }
 }

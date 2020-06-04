@@ -1,11 +1,17 @@
-import { Controller, Get } from '@nestjs/common';
+import { Controller, Get, Param } from '@nestjs/common';
 import Database from '../database';
+import { Account } from './account.interface'
 
 @Controller('accounts')
 export class AccountsController {
   @Get()
-  database(): string {
-    console.log(Database)
-    return Database.db;
+  getAccounts(): Account[] {
+    return Database.db.get('Accounts');
+  }
+
+  @Get(':id')
+  getAccount(@Param('id') id): Account {
+    return Database.db.get('Accounts')
+      .find({id: parseInt(id)})
   }
 }

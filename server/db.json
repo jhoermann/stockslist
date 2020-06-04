@@ -1,6 +1,12 @@
 {
-  "Accounts": [],
+  "Accounts": [
+    {
+      "id": 1,
+      "name": "Default Account"
+    }
+  ],
   "Stocks": [],
   "Actions": [],
-  "DividendDates": []
+  "DividendDates": [],
+  "Prices": []
 }

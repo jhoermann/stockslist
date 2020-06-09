@@ -1,4 +1,4 @@
-export interface Prices {
+export interface Price {
     id: number
     stockId: number
     price: number

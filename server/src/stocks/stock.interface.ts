@@ -1,4 +1,4 @@
-export interface Stocks {
+export interface Stock {
     id: number
     accountId: number
     name: string

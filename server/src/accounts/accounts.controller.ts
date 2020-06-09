@@ -10,8 +10,8 @@ export class AccountsController {
   }
 
   @Get(':id')
-  getAccount(@Param('id') id): Account {
+  getAccount(@Param('id') id: number): Account {
     return Database.db.get('Accounts')
-      .find({id: parseInt(id)})
+      .find({id})
   }
 }

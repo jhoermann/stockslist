@@ -1,4 +1,4 @@
-export interface DividendDates {
+export interface DividendDate {
     id: number
     stockId: number
     dividend: number

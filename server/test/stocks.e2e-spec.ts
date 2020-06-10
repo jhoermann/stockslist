@@ -3,11 +3,10 @@ import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
 import Database from './../src/database'
-import { Account } from './../src/accounts/account.interface'
+import { Stock } from './../src/stocks/stock.interface'
 
-describe('AccountsController (e2e)', () => {
+describe('StocksController (e2e)', () => {
   let app: INestApplication
-  const accounts: Account[] = [{"id":1,"name":"Default Account"}]
 
   beforeAll(() => {
     Database.connectTestDb()
@@ -23,18 +22,11 @@ describe('AccountsController (e2e)', () => {
     await app.init()
   })
 
-  it('gets all Accounts', () => {
+  it('gets all Stocks', () => {
     return request(app.getHttpServer())
-      .get('/accounts')
+      .get('/accounts/1/stocks')
       .expect(200)
-      .expect(accounts)
-  })
-
-  it('gets the default Account', () => {
-    return request(app.getHttpServer())
-      .get('/accounts/1')
-      .expect(200)
-      .expect(accounts[0])
+      .expect([])
   })
 
   afterAll(() => {

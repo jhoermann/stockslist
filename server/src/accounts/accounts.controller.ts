@@ -1,5 +1,5 @@
-import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common';
-import Database from '../database';
+import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common'
+import Database from '../database'
 import { Account } from './account.interface'
 import { Stock } from '../stocks/stock.interface'
 
@@ -13,7 +13,6 @@ export class AccountsController {
   // Get Account by id
   @Get(':id')
   getAccount(@Param('id', ParseIntPipe) id: number): Account {
-    console.log(typeof id)
     return Database.db.get('Accounts')
       .find({id})
   }

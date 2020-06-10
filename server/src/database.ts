@@ -1,6 +1,7 @@
 
 const low = require('lowdb')
 const FileSync = require('lowdb/adapters/FileSync')
+const fs = require('fs');
 import { _ } from 'lodash'
 
 export default {
@@ -9,6 +10,15 @@ export default {
   connectDb(): void {
     const adapter = new FileSync('db.json')
     this.db = low(adapter)
+  },
+
+  connectTestDb(): void {
+    const adapter = new FileSync('db-test.json')
+    this.db = low(adapter)
+  },
+
+  deleteTestDb(): void {
+    fs.unlinkSync('file.txt')
   },
 
   initDb(): void {

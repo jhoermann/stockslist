@@ -1,5 +1,5 @@
-import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common';
-import Database from '../database';
+import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common'
+import Database from '../database'
 import { Stock } from './stock.interface'
 import { CreateStockDto, UpdateStockDto } from './dtos'
 

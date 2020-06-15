@@ -1,4 +1,5 @@
 interface CreateStockDto {
+    accountId: number,
     name: string
     isin: string
     wkn: string
@@ -7,6 +8,7 @@ interface CreateStockDto {
 }
 
 interface UpdateStockDto {
+    accountId: number,
     name: string
     isin: string
     wkn: string

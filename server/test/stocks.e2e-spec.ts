@@ -9,8 +9,7 @@ describe('StocksController (e2e)', () => {
   let app: INestApplication
 
   beforeAll(() => {
-    Database.connectTestDb()
-    Database.initDb()
+    Database.initTestDb()
   })
 
   beforeEach(async () => {
@@ -26,7 +25,30 @@ describe('StocksController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/accounts/1/stocks')
       .expect(200)
-      .expect([])
+      .expect(Database.db.get('Stocks').filter({accountId:1}).value())
+  })
+
+  it('gets one Stock', () => {
+    return request(app.getHttpServer())
+      .get('/stocks/1')
+      .expect(200)
+      .expect(Database.db.get('Stocks').getById(1).value())
+  })
+
+  it('creates a new Stock', () => {
+    const newStock = {
+      accountId: 1,
+      name: 'Cisco Inc.',
+      isin: 'US17275R1023',
+      wkn: '878841',
+      quantity: 20,
+      industrySector: 'Network',
+    }
+    return request(app.getHttpServer())
+      .post('/stocks')
+      .send(newStock)
+      .expect(201)
+      .expect(() => Database.db.get('Stocks').getById(2).value())
   })
 
   afterAll(() => {

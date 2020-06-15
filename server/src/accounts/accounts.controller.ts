@@ -8,18 +8,20 @@ export class AccountsController {
   // Get all Accounts
   @Get()
   getAccounts(): Account[] {
-    return Database.db.get('Accounts');
+    return Database.db.get('Accounts').value()
   }
   // Get Account by id
   @Get(':id')
   getAccount(@Param('id', ParseIntPipe) id: number): Account {
     return Database.db.get('Accounts')
       .find({id})
+      .value()
   }
   // Get Stocks by Account
   @Get(':accountId/stocks')
   getStocks(@Param('accountId', ParseIntPipe) accountId: number): Stock[] {
     return Database.db.get('Stocks')
       .filter({accountId})
+      .value()
   }
 }

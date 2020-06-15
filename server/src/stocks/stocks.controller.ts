@@ -7,30 +7,33 @@ import { CreateStockDto, UpdateStockDto } from './dtos'
 export class StocksController {
   // Get Stock by id
   @Get(':id')
-  getAccount(@Param('id', ParseIntPipe) id: number): Stock {
+  getStock(@Param('id', ParseIntPipe) id: number): Stock {
     return Database.db.get('Stocks')
-      .find({id})
+      .getById(id)
+      .value()
   }
   // Create Stock
   @Post()
   createStock(@Body() createStockDto: CreateStockDto): Stock {
     return Database.db.get('Stocks')
-      .push(createStockDto)
+      .insert({
+        ...createStockDto,
+        created: new Date(),
+      })
       .write()
   }
   // Update Stock
   @Put(':id')
   updateStock(@Param('id', ParseIntPipe) id: number, @Body() updateStockDto: UpdateStockDto): Stock {
     return Database.db.get('Stocks')
-      .find({id})
-      .assign(updateStockDto)
+      .updateById(id, updateStockDto)
       .write()
   }
   // Remove Stock
   @Delete(':id')
   removeStock(@Param('id', ParseIntPipe) id: number) {
     return Database.db.get('Stocks')
-      .remove({id})
+      .removeById(id)
       .write()
   }
 }

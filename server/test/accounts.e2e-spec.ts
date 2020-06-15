@@ -10,8 +10,7 @@ describe('AccountsController (e2e)', () => {
   const accounts: Account[] = [{"id":1,"name":"Default Account"}]
 
   beforeAll(() => {
-    Database.connectTestDb()
-    Database.initDb()
+    Database.initTestDb()
   })
 
   beforeEach(async () => {

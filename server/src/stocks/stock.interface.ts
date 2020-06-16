@@ -6,5 +6,5 @@ export interface Stock {
     wkn: string
     quantity: number
     industrySector: string
-    created: Date
+    created: string
 }

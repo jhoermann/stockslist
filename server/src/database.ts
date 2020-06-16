@@ -29,7 +29,7 @@ const dbTestDefaults = {
     wkn: '716460',
     quantity: 10,
     industrySector: 'Software',
-    created: new Date(),
+    created: new Date().toJSON(),
   }],
   Actions: [],
   DividendDates: [],

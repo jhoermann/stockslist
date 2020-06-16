@@ -18,7 +18,7 @@ export class StocksController {
     return Database.db.get('Stocks')
       .insert({
         ...createStockDto,
-        created: new Date(),
+        created: new Date().toJSON(),
       })
       .write()
   }

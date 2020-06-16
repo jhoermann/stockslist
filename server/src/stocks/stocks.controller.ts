@@ -1,39 +1,30 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common'
-import Database from '../database'
 import { Stock } from './stock.interface'
 import { CreateStockDto, UpdateStockDto } from './dtos'
+import { StocksService } from './stocks.service';
 
 @Controller('stocks')
 export class StocksController {
+  constructor(private stocksService: StocksService) {}
+
   // Get Stock by id
   @Get(':id')
   getStock(@Param('id', ParseIntPipe) id: number): Stock {
-    return Database.db.get('Stocks')
-      .getById(id)
-      .value()
+    return this.stocksService.getStock(id)
   }
   // Create Stock
   @Post()
   createStock(@Body() createStockDto: CreateStockDto): Stock {
-    return Database.db.get('Stocks')
-      .insert({
-        ...createStockDto,
-        created: new Date().toJSON(),
-      })
-      .write()
+    return this.stocksService.createStock(createStockDto)
   }
   // Update Stock
   @Put(':id')
   updateStock(@Param('id', ParseIntPipe) id: number, @Body() updateStockDto: UpdateStockDto): Stock {
-    return Database.db.get('Stocks')
-      .updateById(id, updateStockDto)
-      .write()
+    return this.stocksService.updateStock(id, updateStockDto)
   }
   // Remove Stock
   @Delete(':id')
   removeStock(@Param('id', ParseIntPipe) id: number) {
-    return Database.db.get('Stocks')
-      .removeById(id)
-      .write()
+    return this.stocksService.removeStock(id)
   }
 }

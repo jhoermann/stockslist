@@ -3,17 +3,19 @@ import { INestApplication } from '@nestjs/common'
 import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
 import Database from './../src/database'
-import { Account } from './../src/accounts/account.interface'
+import { AccountsService } from './../src/accounts/accounts.service'
 
 describe('AccountsController (e2e)', () => {
   let app: INestApplication
-  const accounts: Account[] = [{"id":1,"name":"Default Account"}]
+  let accountsService: AccountsService
 
   beforeAll(() => {
     Database.initTestDb()
   })
 
   beforeEach(async () => {
+    accountsService = new AccountsService()
+    
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile()
@@ -26,14 +28,14 @@ describe('AccountsController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/accounts')
       .expect(200)
-      .expect(accounts)
+      .expect(accountsService.getAccounts())
   })
 
   it('gets the default Account', () => {
     return request(app.getHttpServer())
       .get('/accounts/1')
       .expect(200)
-      .expect(accounts[0])
+      .expect(accountsService.getAccount(1))
   })
 
   afterAll(() => {

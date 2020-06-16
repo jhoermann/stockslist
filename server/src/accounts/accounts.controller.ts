@@ -1,27 +1,29 @@
 import { Controller, Get, Param, ParseIntPipe } from '@nestjs/common'
-import Database from '../database'
 import { Account } from './account.interface'
 import { Stock } from '../stocks/stock.interface'
+import { AccountsService } from './accounts.service'
+import { StocksService } from './../stocks/stocks.service'
 
 @Controller('accounts')
 export class AccountsController {
+  constructor(
+    private accountsService: AccountsService,
+    private stocksService: StocksService
+  ) {}
+
   // Get all Accounts
   @Get()
   getAccounts(): Account[] {
-    return Database.db.get('Accounts').value()
+    return this.accountsService.getAccounts()
   }
   // Get Account by id
   @Get(':id')
   getAccount(@Param('id', ParseIntPipe) id: number): Account {
-    return Database.db.get('Accounts')
-      .find({id})
-      .value()
+    return this.accountsService.getAccount(id)
   }
   // Get Stocks by Account
   @Get(':accountId/stocks')
   getStocks(@Param('accountId', ParseIntPipe) accountId: number): Stock[] {
-    return Database.db.get('Stocks')
-      .filter({accountId})
-      .value()
+    return this.stocksService.getStocks(accountId)
   }
 }

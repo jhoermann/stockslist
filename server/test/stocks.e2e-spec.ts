@@ -4,16 +4,19 @@ import { _ } from 'lodash'
 import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
 import Database from './../src/database'
-import { Stock } from './../src/stocks/stock.interface'
+import { StocksService } from './../src/stocks/stocks.service'
 
 describe('StocksController (e2e)', () => {
   let app: INestApplication
+  let stocksService: StocksService
 
   beforeAll(() => {
     Database.initTestDb()
   })
 
   beforeEach(async () => {
+    stocksService = new StocksService()
+
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
     }).compile()
@@ -26,14 +29,14 @@ describe('StocksController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/accounts/1/stocks')
       .expect(200)
-      .expect(Database.db.get('Stocks').filter({accountId:1}).value())
+      .expect(stocksService.getStocks(1))
   })
 
   it('gets one Stock', () => {
     return request(app.getHttpServer())
       .get('/stocks/1')
       .expect(200)
-      .expect(Database.db.get('Stocks').getById(1).value())
+      .expect(stocksService.getStock(1))
   })
 
   it('creates a new Stock', () => {
@@ -50,7 +53,7 @@ describe('StocksController (e2e)', () => {
       .send(newStock)
       .expect(201)
       .expect(res => {
-        if (!_.isEqual(res.body, Database.db.get('Stocks').getById(2).value())) {
+        if (!_.isEqual(res.body, stocksService.getStock(2))) {
           throw new Error('Stock not created')
         }
       })

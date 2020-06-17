@@ -4,7 +4,6 @@ export interface Stock {
     name: string
     isin: string
     wkn: string
-    quantity: number
     industrySector: string
     created: string
 }

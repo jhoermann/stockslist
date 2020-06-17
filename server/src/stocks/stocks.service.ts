@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common'
 import Database from '../database'
 import { Stock } from './stock.interface'
 import { CreateStockDto, UpdateStockDto } from './dtos'

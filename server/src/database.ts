@@ -27,7 +27,6 @@ const dbTestDefaults = {
     name: 'SAP SE',
     isin: 'DE0007164600',
     wkn: '716460',
-    quantity: 10,
     industrySector: 'Software',
     created: new Date().toJSON(),
   }],
@@ -35,13 +34,23 @@ const dbTestDefaults = {
     id: 1,
     stockId: 1,
     type: 'buy',
-    quantity: 5,
-    price: 5000,
+    quantity: 10,
+    price: 6000,
     fees: 550,
     date: new Date().toJSON(),
   }],
-  DividendDates: [],
-  Prices: [],
+  DividendDates: [{
+    id: 1,
+    stockId: 1,
+    dividend: 150,
+    date: new Date().toJSON(),
+  }],
+  Prices: [{
+    id: 1,
+    stockId: 1,
+    price: 5500,
+    date: new Date().toJSON(),
+  }],
 }
 
 export default {
@@ -70,7 +79,7 @@ export default {
   },
 
   deleteTestDb(): void {
-    //fs.unlinkSync('db-test.json')
+    fs.unlinkSync('db-test.json')
   },
 
 }

@@ -4,5 +4,6 @@ export interface Action {
     type: string
     quantity: number
     price: number
-    date: Date
+    fees: number
+    date: string
 }

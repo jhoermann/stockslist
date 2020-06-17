@@ -5,10 +5,12 @@ import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
 import Database from './../src/database'
 import { StocksService } from './../src/stocks/stocks.service'
+import { ActionsService } from './../src/stocks/actions/actions.service'
 
 describe('StocksController (e2e)', () => {
   let app: INestApplication
   let stocksService: StocksService
+  let actionsService: ActionsService
 
   beforeAll(() => {
     Database.initTestDb()
@@ -16,6 +18,7 @@ describe('StocksController (e2e)', () => {
 
   beforeEach(async () => {
     stocksService = new StocksService()
+    actionsService = new ActionsService()
 
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
@@ -78,6 +81,39 @@ describe('StocksController (e2e)', () => {
       .expect(() => {
         if(Database.db.get('Stocks').getById(1).value()) {
           throw new Error('Stock not deleted')
+        }
+      })
+  })
+
+  /* Actions */
+  it('gets all Actions of a Stock', () => {
+    return request(app.getHttpServer())
+      .get('/stocks/1/actions')
+      .expect(200)
+      .expect(actionsService.getActions(1))
+  })
+
+  it('gets one Action by id', () => {
+    return request(app.getHttpServer())
+      .get('/stocks/1/actions/1')
+      .expect(200)
+      .expect(actionsService.getAction(1))
+  })
+
+  it('creates a new Action for a Stock', () => {
+    const newAction = {
+      type: 'buy',
+      quantity: 10,
+      price: 5000,
+      fees: 550,
+    }
+    return request(app.getHttpServer())
+      .post('/stocks/1/actions')
+      .send(newAction)
+      .expect(201)
+      .expect(res => {
+        if (!_.isEqual(res.body, actionsService.getAction(2))) {
+          throw new Error('Action not created')
         }
       })
   })

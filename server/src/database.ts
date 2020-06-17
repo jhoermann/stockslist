@@ -31,7 +31,15 @@ const dbTestDefaults = {
     industrySector: 'Software',
     created: new Date().toJSON(),
   }],
-  Actions: [],
+  Actions: [{
+    id: 1,
+    stockId: 1,
+    type: 'buy',
+    quantity: 5,
+    price: 5000,
+    fees: 550,
+    date: new Date().toJSON(),
+  }],
   DividendDates: [],
   Prices: [],
 }
@@ -62,7 +70,7 @@ export default {
   },
 
   deleteTestDb(): void {
-    fs.unlinkSync('db-test.json')
+    //fs.unlinkSync('db-test.json')
   },
 
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Account } from './interfaces/account.interface'
+import { AccountsService } from './services/accounts.service'
+import { StocksService } from './services/stocks.service'
 
 @Component({
   selector: 'app-root',
@@ -9,19 +9,19 @@ import { Account } from './interfaces/account.interface'
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(
-    private http: HttpClient,
-  ) {}
-
   title = 'stockslist'
   account: Account
 
-  ngOnInit() {
-    this.getAccount()
-  }
+  constructor(
+    private accountsService: AccountsService,
+    private stocksService: StocksService
+  ) {}
 
-  getAccount():void {
-    this.http.get('http://localhost:3000/accounts/1')
-      .subscribe((account:Account) => this.account = account)
+  ngOnInit() {
+    this.accountsService.account.subscribe(account => this.account = account)
+    // Get Account
+    this.accountsService.getAccount(1)
+    // Get Stocks
+    this.stocksService.getStocks()
   }
 }

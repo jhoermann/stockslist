@@ -17,4 +17,8 @@
 
 ## Try it out
 
-Start the backend with `npm run start` in the server folder. Run `ng serve` for a dev server in the frontend folder. Navigate to `http://localhost:4200/`.
+Feel free to try out the stockslist app. **Keep in mind that stockslist is still under heavy development and not yet suitable for productive usage!**
+
+Run `npm i` inside frontend and server folder. Start the backend with `npm run start` in the server folder. Run `ng serve` for a dev server in the frontend folder. Navigate to `http://localhost:4200/`.
+
+

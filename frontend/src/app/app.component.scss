@@ -8,14 +8,18 @@
 
 .header {
     grid-column: span 6;
+    &--account {
+        display: grid;
+        grid-template-columns: 1fr auto;
+    }
 }
 
 .chart {
-    grid-column: span 4;
+    grid-column: span 5;
 }
 
 .general-info {
-    grid-column: span 2;
+    grid-column: span 1;
 }
 
 .data-table {

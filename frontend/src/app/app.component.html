@@ -2,15 +2,17 @@
 <div class="app-container">
   <mat-card class="header">
     <h1>Stockslist</h1>
-    <h2>{{ account && account.name }}</h2>
-    <h2>+/- %</h2>
+    <div class="header--account">
+      <h2>{{ account && account.name }}</h2>
+      <h2>+/- %</h2>
+    </div>
   </mat-card>
   <mat-card class="chart">
     <mat-card-header>
       <h2>Chart</h2>
     </mat-card-header>
     <mat-card-content>
-      <app-line-chart></app-line-chart>
+      <app-chart></app-chart>
     </mat-card-content>
   </mat-card>
   <mat-card class="general-info">
@@ -23,7 +25,7 @@
   </mat-card>
   <mat-card class="data-table">
     <mat-card-header>
-      <h2>Data table</h2>
+      <h2>Stocks</h2>
     </mat-card-header>
     <mat-card-content>
       <app-data-table></app-data-table>

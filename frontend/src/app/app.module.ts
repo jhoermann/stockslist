@@ -13,14 +13,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { HttpClientModule }    from '@angular/common/http';
 
 import { ChartsModule } from 'ng2-charts';
-import { LineChartComponent } from './line-chart/line-chart.component';
+import { ChartComponent } from './chart/chart.component';
 import { GeneralInfoComponent } from './general-info/general-info.component';
 import { DataTableComponent } from './data-table/data-table.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LineChartComponent,
+    ChartComponent,
     GeneralInfoComponent,
     DataTableComponent
   ],

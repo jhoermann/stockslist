@@ -1,7 +1,9 @@
+type actionType = 'buy' | 'sell' 
+
 export interface Action {
     id: number
     stockId: number
-    type: string
+    type: actionType
     quantity: number
     price: number
     fees: number

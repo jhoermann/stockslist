@@ -6,16 +6,46 @@
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
 
-  <!-- ISIN Column -->
-  <ng-container matColumnDef="isin">
-    <mat-header-cell *matHeaderCellDef> ISIN </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.isin}} </mat-cell>
+  <!-- Quantity Column -->
+  <ng-container matColumnDef="quantity">
+    <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.quantity}} </mat-cell>
   </ng-container>
 
-  <!-- WKN Column -->
-  <ng-container matColumnDef="wkn">
-    <mat-header-cell *matHeaderCellDef> WKN </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.wkn}} </mat-cell>
+  <!-- Buy price Column -->
+  <ng-container matColumnDef="buyPrice">
+    <mat-header-cell *matHeaderCellDef> Buy price </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.buyPrice}} </mat-cell>
+  </ng-container>
+
+  <!-- Current price Column -->
+  <ng-container matColumnDef="currentPrice">
+    <mat-header-cell *matHeaderCellDef> Current price </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.currentPrice}} </mat-cell>
+  </ng-container>
+
+  <!-- Win / Loss Column -->
+  <ng-container matColumnDef="winLoss">
+    <mat-header-cell *matHeaderCellDef> Win / Loss </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.winLoss}} </mat-cell>
+  </ng-container>
+
+  <!-- Win / Loss Percent Column -->
+  <ng-container matColumnDef="winLossPercent">
+    <mat-header-cell *matHeaderCellDef> Win / Loss (percent) </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.winLossPercent}} </mat-cell>
+  </ng-container>
+
+  <!-- Earned dividends Column -->
+  <ng-container matColumnDef="earnedDividends">
+    <mat-header-cell *matHeaderCellDef> Earned dividends </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.earnedDividends}} </mat-cell>
+  </ng-container>
+
+  <!-- ISIN / WKN Column -->
+  <ng-container matColumnDef="isinWkn">
+    <mat-header-cell *matHeaderCellDef> ISIN / WKN </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.isin}} / {{element.wkn}} </mat-cell>
   </ng-container>
 
   <!-- Idustry Sector Column -->

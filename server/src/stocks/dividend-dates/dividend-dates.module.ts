@@ -4,6 +4,7 @@ import { DividendDatesService } from './dividend-dates.service';
 
 @Module({
   controllers: [DividendDatesController],
-  providers: [DividendDatesService]
+  providers: [DividendDatesService],
+  exports: [DividendDatesService],
 })
 export class DividendDatesModule {}

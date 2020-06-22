@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from './../services/stocks.service'
-import { Stock } from './../interfaces/stock.interface'
+import { Stock, EnhancedStock } from './../interfaces/stock.interface'
 
 export interface PeriodicElement {
   name: string;
@@ -16,7 +16,17 @@ export interface PeriodicElement {
 })
 export class DataTableComponent implements OnInit {
 
-  displayedColumns: string[] = ['name', 'isin', 'wkn', 'industrySector', 'created'];
+  displayedColumns: string[] = [
+    'name',
+    'quantity',
+    'buyPrice',
+    'currentPrice',
+    'winLoss',
+    'winLossPercent',
+    'earnedDividends',
+    'isinWkn',
+    'industrySector',
+    'created'];
   dataSource: Stock[];
 
   constructor(

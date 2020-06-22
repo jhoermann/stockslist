@@ -68,7 +68,8 @@ export default {
     const dbState = this.db.getState()
     if (_.isEmpty(dbState)) {
       // Set database defaults
-      this.db.defaults(dbDefaults).write()
+      // this.db.defaults(dbDefaults).write()
+      this.db.defaults(dbTestDefaults).write()
     }
   },
 

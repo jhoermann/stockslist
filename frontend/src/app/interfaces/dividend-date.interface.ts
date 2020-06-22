@@ -2,5 +2,5 @@ export interface DividendDate {
     id: number
     stockId: number
     dividend: number
-    date: Date
+    date: string
 }

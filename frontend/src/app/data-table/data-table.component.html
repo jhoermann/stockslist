@@ -1,9 +1,4 @@
 <mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-  <!-- Position Column -->
-  <ng-container matColumnDef="position">
-    <mat-header-cell *matHeaderCellDef> No. </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.position}} </mat-cell>
-  </ng-container>
 
   <!-- Name Column -->
   <ng-container matColumnDef="name">
@@ -11,16 +6,28 @@
     <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
   </ng-container>
 
-  <!-- Weight Column -->
-  <ng-container matColumnDef="weight">
-    <mat-header-cell *matHeaderCellDef> Weight </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.weight}} </mat-cell>
+  <!-- ISIN Column -->
+  <ng-container matColumnDef="isin">
+    <mat-header-cell *matHeaderCellDef> ISIN </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.isin}} </mat-cell>
   </ng-container>
 
-  <!-- Symbol Column -->
-  <ng-container matColumnDef="symbol">
-    <mat-header-cell *matHeaderCellDef> Symbol </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+  <!-- WKN Column -->
+  <ng-container matColumnDef="wkn">
+    <mat-header-cell *matHeaderCellDef> WKN </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.wkn}} </mat-cell>
+  </ng-container>
+
+  <!-- Idustry Sector Column -->
+  <ng-container matColumnDef="industrySector">
+    <mat-header-cell *matHeaderCellDef> Idustry sector </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.industrySector}} </mat-cell>
+  </ng-container>
+
+  <!-- Created Column -->
+  <ng-container matColumnDef="created">
+    <mat-header-cell *matHeaderCellDef> Stock added </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.created}} </mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

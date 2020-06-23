@@ -1,9 +1,9 @@
 import {Stock, EnhancedStock} from './../interfaces/stock.interface'
 
 export class StockHelper {
-  private stock
+  private stock: EnhancedStock
 
-  constructor(stock: Stock) {
+  constructor(stock) {
     this.stock = stock
   }
 

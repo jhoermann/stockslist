@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { StocksService } from './../services/stocks.service'
+import { Sums } from './../interfaces/sums.interface'
 
 @Component({
   selector: 'app-general-info',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class GeneralInfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private stocksService: StocksService
+  ) {}
+  sums: Sums
 
   ngOnInit(): void {
+    this.stocksService.stocks.subscribe(() => this.sums = this.stocksService.sums)
   }
 
 }

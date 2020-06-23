@@ -20,7 +20,7 @@ interface EnhancedStock extends Stock {
     buyPrice: number
     currentPrice: number
     winLoss: number
-    winLossPercent: number
+    winLossPercent: string
     earnedDividends: number
 }
 

@@ -1,5 +1,9 @@
-<div><h3>Total:</h3> 10000€</div>
-<div><h3>Total incl. dividends:</h3> 12000€</div>
-<div><h3>Invested:</h3> 8000€</div>
-<div><h3>Total +/- in percent:</h3> 50%</div>
-<button mat-raised-button color="primary">New entry</button>
+<div>
+    <div *ngIf="sums">
+        <div><h3>Total:</h3> {{sums.total}}</div>
+        <div><h3>Total incl. dividends:</h3> {{sums.totalInclDividends}}</div>
+        <div><h3>Invested:</h3> {{sums.invested}}€</div>
+        <div><h3>Total +/-:</h3> {{sums.winLoss}} ({{sums.winLossPercent}})</div>
+    </div>
+    <button mat-raised-button color="primary">New entry</button>
+</div>

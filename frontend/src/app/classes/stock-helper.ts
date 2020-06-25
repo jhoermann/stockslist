@@ -29,7 +29,7 @@ export class StockHelper {
 
   winLossInPercent(): string {
     const winLossPercent = (this.stock.winLoss / this.stock.total) * 100
-    return `${winLossPercent.toFixed(2)} %`
+    return `${winLossPercent.toFixed(2)}%`
   }
 
   calculateEarnedDividends(): number {

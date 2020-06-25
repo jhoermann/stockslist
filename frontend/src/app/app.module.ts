@@ -16,13 +16,17 @@ import { ChartsModule } from 'ng2-charts';
 import { ChartComponent } from './chart/chart.component';
 import { GeneralInfoComponent } from './general-info/general-info.component';
 import { DataTableComponent } from './data-table/data-table.component';
+import { PricePipe } from './pipes/price.pipe';
+import { DatePipe } from './pipes/date.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     ChartComponent,
     GeneralInfoComponent,
-    DataTableComponent
+    DataTableComponent,
+    PricePipe,
+    DatePipe
   ],
   imports: [
     BrowserModule,

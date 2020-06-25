@@ -4,7 +4,10 @@
     <h1>Stockslist</h1>
     <div class="header--account">
       <h2 *ngIf="account">{{account.name}}</h2>
-      <h2 *ngIf="sums">{{sums.winLossPercent}}</h2>
+      <span *ngIf="sums">
+        <h2 *ngIf="sums.winLoss >= 0" class="win">+{{sums.winLossPercent}}</h2>
+        <h2 *ngElse class="loss">-{{sums.winLossPercent}}</h2>
+      </span>
     </div>
   </mat-card>
   <mat-card class="chart">

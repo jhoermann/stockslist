@@ -1,9 +1,15 @@
 <div>
     <div *ngIf="sums">
-        <div><h3>Total:</h3> {{sums.total}}</div>
-        <div><h3>Total incl. dividends:</h3> {{sums.totalInclDividends}}</div>
-        <div><h3>Invested:</h3> {{sums.invested}}</div>
-        <div><h3>Total +/-:</h3> {{sums.winLoss}} ({{sums.winLossPercent}})</div>
+        <div><h3>Total:</h3> {{sums.total | price}}</div>
+        <div><h3>Total incl. dividends:</h3> {{sums.totalInclDividends | price}}</div>
+        <div><h3>Invested:</h3> {{sums.invested | price}}</div>
+        <div>
+            <h3>Total +/-:</h3> 
+            <span *ngIf="sums.winLoss >= 0" class="win">+{{sums.winLoss | price}}</span>
+            <span *ngElse class="loss">+{{sums.winLoss | price}}</span>
+            <span *ngIf="sums.winLoss >= 0" class="win"> (+{{sums.winLossPercent}})</span>
+            <span *ngElse class="loss"> (-{{sums.winLossPercent}})</span>
+        </div>
     </div>
     <button mat-raised-button color="primary">New entry</button>
 </div>

@@ -15,37 +15,43 @@
   <!-- Buy price Column -->
   <ng-container matColumnDef="buyPrice">
     <mat-header-cell *matHeaderCellDef> Buy price </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.buyPrice}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.buyPrice | price}} </mat-cell>
   </ng-container>
 
   <!-- Current price Column -->
   <ng-container matColumnDef="currentPrice">
     <mat-header-cell *matHeaderCellDef> Current price </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.currentPrice}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.currentPrice | price}} </mat-cell>
   </ng-container>
 
   <!-- Total Column -->
   <ng-container matColumnDef="total">
     <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.total}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.total | price}} </mat-cell>
   </ng-container>
 
   <!-- Win / Loss Column -->
   <ng-container matColumnDef="winLoss">
     <mat-header-cell *matHeaderCellDef> Win / Loss </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.winLoss}} </mat-cell>
+    <mat-cell *matCellDef="let element">
+      <span *ngIf="element.winLoss >= 0" class="win">+{{element.winLoss | price}}</span>
+      <span *ngElse class="loss">-{{element.winLoss | price}}</span>
+    </mat-cell>
   </ng-container>
 
   <!-- Win / Loss Percent Column -->
   <ng-container matColumnDef="winLossPercent">
     <mat-header-cell *matHeaderCellDef> Win / Loss (percent) </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.winLossPercent}} </mat-cell>
+    <mat-cell *matCellDef="let element">
+      <span *ngIf="element.winLoss >= 0" class="win">+{{element.winLossPercent}}</span>
+      <span *ngElse class="loss">-{{element.winLossPercent}}</span>
+    </mat-cell>
   </ng-container>
 
   <!-- Earned dividends Column -->
   <ng-container matColumnDef="earnedDividends">
     <mat-header-cell *matHeaderCellDef> Earned dividends </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.earnedDividends}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.earnedDividends | price}} </mat-cell>
   </ng-container>
 
   <!-- ISIN / WKN Column -->
@@ -63,13 +69,13 @@
   <!-- Created Column -->
   <ng-container matColumnDef="created">
     <mat-header-cell *matHeaderCellDef> Stock added </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{element.created}} </mat-cell>
+    <mat-cell *matCellDef="let element"> {{element.created | date}} </mat-cell>
   </ng-container>
 
   <!-- Percent weight Column -->
   <ng-container matColumnDef="percentWeight">
     <mat-header-cell *matHeaderCellDef> Percent weight </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{((element.total / sums.total) * 100).toFixed(2)}} %</mat-cell>
+    <mat-cell *matCellDef="let element"> {{((element.total / sums.total) * 100).toFixed(2)}}%</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

@@ -31,13 +31,13 @@ export class StocksService {
 
   calculateSums(stocks: EnhancedStock[]) {
     const total: number = stocks
-      .map(stock => stock.currentPrice)
+      .map(stock => stock.total)
       .reduce((priceA, priceB) => priceA + priceB)
     const totalInclDividends: number = total + stocks
       .map(stock => stock.earnedDividends)
       .reduce((earnedDividendA, earnedDividendB) => earnedDividendA + earnedDividendB)
     const invested: number = stocks
-      .map(stock => stock.buyPrice)
+      .map(stock => stock.buyPriceTotal)
       .reduce((priceA, priceB) => priceA + priceB)
     const winLoss: number = stocks
       .map(stock => stock.winLoss)

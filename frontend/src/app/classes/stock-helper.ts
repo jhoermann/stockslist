@@ -10,8 +10,10 @@ export class StockHelper {
   enhanceStock(): EnhancedStock {
     this.stock.quantity = this.getCurrentQuantity()
     this.stock.buyPrice = this.calculateBuyPrice()
+    this.stock.buyPriceTotal = this.stock.buyPrice * this.stock.quantity
     this.stock.currentPrice = this.stock.prices[this.stock.prices.length -1].price
-    this.stock.winLoss = this.stock.currentPrice - this.stock.buyPrice
+    this.stock.total = this.stock.currentPrice * this.stock.quantity
+    this.stock.winLoss = this.stock.total - this.stock.buyPriceTotal
     this.stock.winLossPercent = this.winLossInPercent()
     this.stock.earnedDividends = this.calculateEarnedDividends()
     return this.stock
@@ -26,7 +28,7 @@ export class StockHelper {
   }
 
   winLossInPercent(): string {
-    const winLossPercent = (this.stock.winLoss / this.stock.currentPrice) * 100
+    const winLossPercent = (this.stock.winLoss / this.stock.total) * 100
     return `${winLossPercent.toFixed(2)} %`
   }
 

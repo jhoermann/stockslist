@@ -24,6 +24,12 @@
     <mat-cell *matCellDef="let element"> {{element.currentPrice}} </mat-cell>
   </ng-container>
 
+  <!-- Total Column -->
+  <ng-container matColumnDef="total">
+    <mat-header-cell *matHeaderCellDef> Total </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{element.total}} </mat-cell>
+  </ng-container>
+
   <!-- Win / Loss Column -->
   <ng-container matColumnDef="winLoss">
     <mat-header-cell *matHeaderCellDef> Win / Loss </mat-header-cell>
@@ -58,6 +64,12 @@
   <ng-container matColumnDef="created">
     <mat-header-cell *matHeaderCellDef> Stock added </mat-header-cell>
     <mat-cell *matCellDef="let element"> {{element.created}} </mat-cell>
+  </ng-container>
+
+  <!-- Percent weight Column -->
+  <ng-container matColumnDef="percentWeight">
+    <mat-header-cell *matHeaderCellDef> Percent weight </mat-header-cell>
+    <mat-cell *matCellDef="let element"> {{((element.total / sums.total) * 100).toFixed(2)}} %</mat-cell>
   </ng-container>
 
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

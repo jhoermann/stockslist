@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { StocksService } from './../services/stocks.service'
 import { Stock, EnhancedStock } from './../interfaces/stock.interface'
+import { Sums } from './../interfaces/sums.interface'
 
 export interface PeriodicElement {
   name: string;
@@ -21,20 +22,27 @@ export class DataTableComponent implements OnInit {
     'quantity',
     'buyPrice',
     'currentPrice',
+    'total',
     'winLoss',
     'winLossPercent',
     'earnedDividends',
     'isinWkn',
     'industrySector',
-    'created'];
+    'created',
+    'percentWeight',
+  ];
   dataSource: Stock[];
 
   constructor(
     private stocksService: StocksService
   ) {}
+  sums: Sums
 
   ngOnInit(): void {
-    this.stocksService.stocks.subscribe(stocks => this.dataSource = stocks)
+    this.stocksService.stocks.subscribe(stocks => {
+      this.sums = this.stocksService.sums
+      this.dataSource = stocks
+    })
   }
 
 }

@@ -2,7 +2,7 @@
 .app-container {
     padding: 2rem;
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;
     grid-gap: 1rem;
 }
 
@@ -11,6 +11,9 @@
     &--account {
         display: grid;
         grid-template-columns: 1fr auto;
+        h2 {
+            margin-bottom: 0;
+        }
     }
 }
 

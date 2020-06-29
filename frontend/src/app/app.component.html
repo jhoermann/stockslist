@@ -1,6 +1,6 @@
 
 <div class="app-container">
-  <mat-card class="header">
+  <mat-card class="mat-elevation-z4 header">
     <h1>Stockslist</h1>
     <div class="header--account">
       <h2 *ngIf="account">{{account.name}}</h2>
@@ -10,15 +10,10 @@
       </span>
     </div>
   </mat-card>
-  <mat-card class="chart">
-    <mat-card-header>
-      <h2>Chart</h2>
-    </mat-card-header>
-    <mat-card-content>
-      <app-chart></app-chart>
-    </mat-card-content>
+  <mat-card class="mat-elevation-z4 chart">
+    <app-chart></app-chart>
   </mat-card>
-  <mat-card class="general-info">
+  <mat-card class="mat-elevation-z4 general-info">
     <mat-card-header>
       <h2>Genaral info</h2>
     </mat-card-header>
@@ -26,14 +21,7 @@
       <app-general-info></app-general-info>
     </mat-card-content>
   </mat-card>
-  <mat-card class="data-table">
-    <mat-card-header>
-      <h2>Stocks</h2>
-    </mat-card-header>
-    <mat-card-content>
-      <app-data-table></app-data-table>
-    </mat-card-content>
-  </mat-card>
+  <app-data-table class="mat-elevation-z4 data-table"></app-data-table>
 </div>
 
 <router-outlet></router-outlet>

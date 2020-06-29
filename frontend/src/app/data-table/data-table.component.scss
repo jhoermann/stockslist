@@ -1,0 +1,9 @@
+.mat-table {
+    border-radius: 0.25rem;
+    .mat-header-row {
+        border-radius: 0.25rem 0.25rem 0 0;
+    }
+    .mat-row:last-of-type {
+        border-radius: 0 0 0.25rem 0.25rem;
+    }
+}

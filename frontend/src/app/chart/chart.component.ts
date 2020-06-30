@@ -38,7 +38,7 @@ export class ChartComponent implements OnInit {
           this.barChartLabels = stocks.map(stock => stock.name)
           const total = this.stocksService.sums.total
           const chartData = stocks.map(stock => {
-            return (stock.total / total) * 100
+            return parseFloat(((stock.total / total) * 100).toFixed(2))
           })
           this.barChartData = [{
             data: chartData, label: 'Percent weights'

@@ -1,15 +1,27 @@
-<div>
+<div class="general-info-content">
     <div *ngIf="sums">
-        <div><h3>Total:</h3> {{sums.total | price}}</div>
-        <div><h3>Total incl. dividends:</h3> {{sums.totalInclDividends | price}}</div>
-        <div><h3>Invested:</h3> {{sums.invested | price}}</div>
-        <div>
+        <div class="general-info-content--rows">
+            <h3>Total:</h3> {{sums.total | price}}
+        </div>
+        <div class="general-info-content--rows">
+            <h3>Total incl. dividends:</h3> {{sums.totalInclDividends | price}}
+        </div>
+        <div class="general-info-content--rows">
+            <h3>Invested:</h3> {{sums.invested | price}}
+        </div>
+        <div class="general-info-content--rows">
             <h3>Total +/-:</h3> 
-            <span *ngIf="sums.winLoss >= 0" class="win">+{{sums.winLoss | price}}</span>
-            <span *ngElse class="loss">+{{sums.winLoss | price}}</span>
-            <span *ngIf="sums.winLoss >= 0" class="win"> (+{{sums.winLossPercent}})</span>
-            <span *ngElse class="loss"> (-{{sums.winLossPercent}})</span>
+            <div>
+                <span *ngIf="sums.winLoss >= 0; else loss" class="win">+{{sums.winLoss | price}}</span>
+                <ng-template #loss>
+                    <span class="loss">{{sums.winLoss | price}}</span>
+                </ng-template>
+                <span *ngIf="sums.winLoss >= 0; else lossPercent" class="win"> (+{{sums.winLossPercent}})</span>
+                <ng-template #lossPercent>
+                    <span class="loss"> ({{sums.winLossPercent}})</span>
+                </ng-template>
+            </div>
         </div>
     </div>
-    <button mat-raised-button color="primary">New entry</button>
+    <!--<button mat-raised-button color="primary">New entry</button>-->
 </div>

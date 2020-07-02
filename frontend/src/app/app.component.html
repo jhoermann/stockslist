@@ -5,8 +5,10 @@
     <div class="header--account">
       <h2 *ngIf="account">{{account.name}}</h2>
       <span *ngIf="sums">
-        <h2 *ngIf="sums.winLoss >= 0" class="win">+{{sums.winLossPercent}}</h2>
-        <h2 *ngElse class="loss">-{{sums.winLossPercent}}</h2>
+        <h2 *ngIf="sums.winLoss >= 0; else lossPercent" class="win">+{{sums.winLossPercent}}</h2>
+        <ng-template #lossPercent>
+          <h2 #lossPercent class="loss">{{sums.winLossPercent}}</h2>
+        </ng-template>
       </span>
     </div>
   </mat-card>

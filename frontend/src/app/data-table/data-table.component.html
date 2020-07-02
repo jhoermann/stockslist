@@ -34,8 +34,10 @@
   <ng-container matColumnDef="winLoss">
     <mat-header-cell *matHeaderCellDef> Win / Loss </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <span *ngIf="element.winLoss >= 0" class="win">+{{element.winLoss | price}}</span>
-      <span *ngElse class="loss">-{{element.winLoss | price}}</span>
+      <span *ngIf="element.winLoss >= 0; else loss" class="win">+{{element.winLoss | price}}</span>
+      <ng-template #loss>
+        <span class="loss">{{element.winLoss | price}}</span>
+      </ng-template>
     </mat-cell>
   </ng-container>
 
@@ -43,8 +45,10 @@
   <ng-container matColumnDef="winLossPercent">
     <mat-header-cell *matHeaderCellDef> Win / Loss (percent) </mat-header-cell>
     <mat-cell *matCellDef="let element">
-      <span *ngIf="element.winLoss >= 0" class="win">+{{element.winLossPercent}}</span>
-      <span *ngElse class="loss">-{{element.winLossPercent}}</span>
+      <span *ngIf="element.winLoss >= 0; else lossPercent" class="win">+{{element.winLossPercent}}</span>
+      <ng-template #lossPercent>
+        <span class="loss">{{element.winLossPercent}}</span>
+      </ng-template>
     </mat-cell>
   </ng-container>
 

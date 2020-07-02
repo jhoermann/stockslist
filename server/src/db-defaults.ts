@@ -65,7 +65,16 @@ export default {
       name: 'Cisco Inc.',
       isin: 'US17275R1023',
       wkn: '878841',
-      industrySector: 'Network',
+      industrySector: 'Technology',
+      created: new Date().toJSON(),
+    },
+    {
+      id: 3,
+      accountId: 1,
+      name: 'BMW AG.',
+      isin: 'DE0005190003',
+      wkn: '519000',
+      industrySector: 'Car',
       created: new Date().toJSON(),
     }],
     Actions: [{
@@ -85,6 +94,15 @@ export default {
       price: 4000,
       fees: 550,
       date: new Date().toJSON(),
+    },
+    {
+      id: 3,
+      stockId: 3,
+      type: 'buy',
+      quantity: 15,
+      price: 5000,
+      fees: 550,
+      date: new Date().toJSON(),
     }],
     DividendDates: [{
       id: 1,
@@ -95,13 +113,19 @@ export default {
     Prices: [{
       id: 1,
       stockId: 1,
-      price: 5500,
+      price: 12000,
       date: new Date().toJSON(),
     },
     {
       id: 2,
       stockId: 2,
-      price: 4500,
+      price: 6000,
+      date: new Date().toJSON(),
+    },
+    {
+      id: 3,
+      stockId: 3,
+      price: 5500,
       date: new Date().toJSON(),
     }],
   }

@@ -6,7 +6,11 @@ import { Pipe, PipeTransform } from '@angular/core'
 export class PricePipe implements PipeTransform {
 
   transform(price: number): string {
-    return '$' + (price / 100).toFixed(2)
+    const priceFormated = (Math.abs(price / 100)).toFixed(2)
+    if (price >= 0) {
+      return '$' + priceFormated
+    }
+    return '-$' + priceFormated
   }
 
 }

@@ -5,9 +5,9 @@ import { CreateDividendDateDto, UpdateDividendDateDto } from './dtos'
 
 @Injectable()
 export class DividendDatesService {
-  getDividendDates(stockid: number): DividendDate[] {
+  getDividendDates(stockId: number): DividendDate[] {
     return Database.db.get('DividendDates')
-      .filter({stockid})
+      .filter({stockId})
       .value()
   }
 

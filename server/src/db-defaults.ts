@@ -71,7 +71,7 @@ export default {
     {
       id: 3,
       accountId: 1,
-      name: 'BMW AG.',
+      name: 'BMW AG',
       isin: 'DE0005190003',
       wkn: '519000',
       industrySector: 'Car',

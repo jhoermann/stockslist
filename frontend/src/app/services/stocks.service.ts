@@ -42,7 +42,7 @@ export class StocksService {
     const winLoss: number = stocks
       .map(stock => stock.winLoss)
       .reduce((winLossA, winLossB) => winLossA + winLossB)
-    const winLossPercent = `${((winLoss / total) * 100).toFixed(2)}%`
+    const winLossPercent = `${((winLoss / invested) * 100).toFixed(2)}%`
     this.sums = {total, totalInclDividends, invested, winLoss, winLossPercent}
   }
 }

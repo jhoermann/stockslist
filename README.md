@@ -2,6 +2,8 @@
 
 ### Private list for keeping track of your stocks.
 
+![alt text](https://i.imgur.com/FKpmeef.jpg)
+
 ## Planned features
 - Calculates the total of your earnings or losses including dividends and fees
 - Stocks watchlist

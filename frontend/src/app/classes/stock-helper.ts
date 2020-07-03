@@ -1,4 +1,5 @@
 import {Stock, EnhancedStock} from './../interfaces/stock.interface'
+import {Action} from './../interfaces/action.interface'
 
 export class StockHelper {
   private stock: EnhancedStock
@@ -20,11 +21,23 @@ export class StockHelper {
   }
 
   getCurrentQuantity(): number {
-    return 10 // Sample value for now
+    return this.stock.actions
+      .map(action => {
+        if (action.type === 'sell') {
+          return -1 * action.quantity
+        }
+        return action.quantity
+      })
+      .reduce((quantityA, quantityB) => quantityA + quantityB)
   }
 
   calculateBuyPrice(): number {
-    return 5000 // Sample value for now
+    const currentQuantity = this.stock.quantity
+    return this.stock.actions
+      .map(action => {
+        return (action.quantity / currentQuantity) * action.price
+      })
+      .reduce((priceA, priceB) => priceA + priceB)
   }
 
   winLossInPercent(): string {

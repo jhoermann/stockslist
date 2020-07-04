@@ -33,16 +33,17 @@ export class StocksService {
     const total: number = stocks
       .map(stock => stock.total)
       .reduce((priceA, priceB) => priceA + priceB)
-    const totalInclDividends: number = total + stocks
+    const earnedDividends = stocks
       .map(stock => stock.earnedDividends)
       .reduce((earnedDividendA, earnedDividendB) => earnedDividendA + earnedDividendB)
+    const totalInclDividends: number = total + earnedDividends
     const invested: number = stocks
       .map(stock => stock.buyPriceTotal)
       .reduce((priceA, priceB) => priceA + priceB)
     const winLoss: number = stocks
       .map(stock => stock.winLoss)
-      .reduce((winLossA, winLossB) => winLossA + winLossB)
+      .reduce((winLossA, winLossB) => winLossA + winLossB) + earnedDividends
     const winLossPercent = `${((winLoss / invested) * 100).toFixed(2)}%`
-    this.sums = {total, totalInclDividends, invested, winLoss, winLossPercent}
+    this.sums = {total, totalInclDividends, earnedDividends, invested, winLoss, winLossPercent}
   }
 }

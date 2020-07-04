@@ -3,6 +3,7 @@ import { ChartOptions, ChartType, ChartDataSets } from 'chart.js'
 import * as pluginDataLabels from 'chartjs-plugin-datalabels'
 import { Label } from 'ng2-charts'
 import { StocksService } from './../services/stocks.service'
+import _ from 'lodash'
 
 @Component({
   selector: 'app-chart',
@@ -35,13 +36,19 @@ export class ChartComponent implements OnInit {
   ngOnInit() {
       this.stocksService.stocks
         .subscribe(stocks => {
-          this.barChartLabels = stocks.map(stock => stock.name)
+          // Build sorted stock data with name and percentWeight
           const total = this.stocksService.sums.total
-          const chartData = stocks.map(stock => {
-            return parseFloat(((stock.total / total) * 100).toFixed(2))
+          let stockData = stocks.map(stock => {
+            const percentWeight: number = parseFloat(((stock.total / total) * 100).toFixed(2))
+            return {name: stock.name , percentWeight}
           })
+          stockData = _.orderBy(stockData, 'percentWeight', 'desc')
+
+          // Set labels and data to chart
+          this.barChartLabels = stockData.map(stock => stock.name)
           this.barChartData = [{
-            data: chartData, label: 'Percent weights'
+            data: stockData.map(stock => stock.percentWeight),
+            label: 'Percent weights'
           }]
         })
   }

@@ -8,6 +8,7 @@ export class DividendDatesService {
   getDividendDates(stockId: number): DividendDate[] {
     return Database.db.get('DividendDates')
       .filter({stockId})
+      .sortBy('date')
       .value()
   }
 

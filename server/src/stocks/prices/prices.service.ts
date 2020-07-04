@@ -8,6 +8,7 @@ export class PricesService {
   getPrices(stockId: number): Price[] {
     return Database.db.get('Prices')
       .filter({stockId})
+      .sortBy('date')
       .value()
   }
 

@@ -8,6 +8,7 @@ export class ActionsService {
   getActions(stockId: number): Action[] {
     return Database.db.get('Actions')
       .filter({stockId})
+      .sortBy('date')
       .value()
   }
 

@@ -21,10 +21,11 @@ describe('StocksController (e2e)', () => {
   })
 
   beforeEach(async () => {
-    stocksService = new StocksService()
     actionsService = new ActionsService()
     dividendDatesService = new DividendDatesService()
     pricesService = new PricesService()
+    stocksService = new StocksService(actionsService, dividendDatesService, pricesService)
+
 
     const moduleFixture: TestingModule = await Test.createTestingModule({
       imports: [AppModule],
@@ -60,8 +61,8 @@ describe('StocksController (e2e)', () => {
       .post('/stocks')
       .send(newStock)
       .expect(201)
-      .expect(res => {
-        if (!_.isEqual(res.body, stocksService.getStock(2))) {
+      .expect(() => {
+        if (!stocksService.getStock(2)) {
           throw new Error('Stock not created')
         }
       })

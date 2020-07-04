@@ -13,13 +13,17 @@ export class StocksService {
     private dividendDatesService: DividendDatesService,
     private pricesService: PricesService,
   ) {}
+
   private setStockProperties(stock) {
-    // Set Actions, DividendDates and Prices for Stock
-    stock.actions = this.actionsService.getActions(stock.id)
-    stock.dividendDates = this.dividendDatesService.getDividendDates(stock.id)
-    stock.prices = this.pricesService.getPrices(stock.id)
+    if (stock) {
+      // Set Actions, DividendDates and Prices for Stock
+      stock.actions = this.actionsService.getActions(stock.id)
+      stock.dividendDates = this.dividendDatesService.getDividendDates(stock.id)
+      stock.prices = this.pricesService.getPrices(stock.id)
+    }
     return stock
   }
+
   getStocks(accountId: number): Stock[] {
     return Database.db.get('Stocks')
       .filter({accountId})

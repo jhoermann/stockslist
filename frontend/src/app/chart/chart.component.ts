@@ -13,7 +13,7 @@ import _ from 'lodash'
 export class ChartComponent implements OnInit {
   public barChartOptions: ChartOptions = {
     scales: { xAxes: [{}], yAxes: [{
-      ticks: {min: 0, max: 100, callback: (value, index, values) => value + '%'},
+      ticks: {min: 0, callback: (value, index, values) => value + '%'},
     }] },
     plugins: {
       datalabels: {

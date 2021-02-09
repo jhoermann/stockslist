@@ -28,3 +28,14 @@
 .data-table {
     grid-column: span 6;
 }
+
+.overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background-color: blue;
+    opacity: 0.5;
+}

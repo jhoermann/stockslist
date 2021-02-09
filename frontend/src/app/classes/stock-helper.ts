@@ -28,7 +28,7 @@ export class StockHelper {
         }
         return action.quantity
       })
-      .reduce((quantityA, quantityB) => quantityA + quantityB)
+      .reduce((quantityA, quantityB) => quantityA + quantityB, 0)
   }
 
   calculateBuyPrice(): number {
@@ -39,7 +39,7 @@ export class StockHelper {
         const feesPerPiece: number = action.fees / action.quantity
         return weightedPrice + feesPerPiece
       })
-      .reduce((priceA, priceB) => priceA + priceB)
+      .reduce((priceA, priceB) => priceA + priceB, 0)
   }
 
   winLossInPercent(): string {

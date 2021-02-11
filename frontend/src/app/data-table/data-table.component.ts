@@ -30,6 +30,7 @@ export class DataTableComponent implements OnInit {
     'industrySector',
     'created',
     'percentWeight',
+    'actions',
   ];
   dataSource: Stock[];
 

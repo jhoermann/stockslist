@@ -82,6 +82,25 @@
     <mat-cell *matCellDef="let element"> {{((element.total / sums.total) * 100).toFixed(2)}}%</mat-cell>
   </ng-container>
 
+  <!-- Actions Column -->
+  <ng-container matColumnDef="actions">
+    <mat-header-cell *matHeaderCellDef> Actions </mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" aria-label="Price change">
+        <mat-icon>price_change</mat-icon>
+      </button>
+      <button mat-icon-button color="primary" aria-label="Dividends">
+        <mat-icon>payments</mat-icon>
+      </button>
+      <button mat-icon-button class="buy-button" aria-label="Buy stock">
+        <mat-icon>monetization_on</mat-icon>
+      </button>
+      <button mat-icon-button class="sell-button" aria-label="Sell stock">
+        <mat-icon>monetization_on</mat-icon>
+      </button>
+    </mat-cell>
+  </ng-container>
+
   <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
   <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
 </mat-table>

@@ -1,0 +1,10 @@
+.add-stock-dialog {
+    display: grid;
+
+    .two-columns {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        grid-gap: 1rem;
+        align-items: center;
+    }
+}

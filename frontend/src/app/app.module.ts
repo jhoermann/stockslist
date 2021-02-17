@@ -11,14 +11,16 @@ import { MatCardModule } from '@angular/material/card'
 import { MatTableModule } from '@angular/material/table'
 import { MatButtonModule } from '@angular/material/button' 
 import { HttpClientModule }    from '@angular/common/http'
-import { MatIconModule } from '@angular/material/icon' 
+import { MatIconModule } from '@angular/material/icon'
+import { MatDialogModule } from '@angular/material/dialog' 
 
 import { ChartsModule } from 'ng2-charts'
 import { ChartComponent } from './chart/chart.component'
 import { GeneralInfoComponent } from './general-info/general-info.component'
 import { DataTableComponent } from './data-table/data-table.component'
 import { PricePipe } from './pipes/price.pipe'
-import { DatePipe } from './pipes/date.pipe'
+import { DatePipe } from './pipes/date.pipe';
+import { AddStockDialogComponent } from './general-info/add-stock-dialog/add-stock-dialog.component'
 
 @NgModule({
   declarations: [
@@ -27,7 +29,8 @@ import { DatePipe } from './pipes/date.pipe'
     GeneralInfoComponent,
     DataTableComponent,
     PricePipe,
-    DatePipe
+    DatePipe,
+    AddStockDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -40,6 +43,7 @@ import { DatePipe } from './pipes/date.pipe'
     MatButtonModule,
     HttpClientModule,
     MatIconModule,
+    MatDialogModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

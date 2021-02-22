@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
+import { Stock } from 'src/app/interfaces/stock.interface';
 
 @Component({
   selector: 'app-add-stock-dialog',
@@ -14,6 +15,8 @@ export class AddStockDialogComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  newStock: Stock
 
   onNoClick(): void {
     this.dialogRef.close();

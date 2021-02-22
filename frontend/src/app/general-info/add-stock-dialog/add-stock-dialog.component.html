@@ -1,6 +1,26 @@
 <div class="add-stock-dialog">
-    <div class="two-columns">
-        <span>Name:</span>
-        <input />
+    <div mat-dialog-content>
+        <div>
+            <h3>Name:</h3>
+            <input class="full-width" />
+        </div>
+        <div class="two-columns">
+            <div>
+                <h3>ISIN:</h3>
+                <input />
+            </div>
+            <div>
+                <h3>WKN:</h3>
+                <input />
+            </div>
+        </div>
+        <div>
+            <h3>Idustry Sector:</h3>
+            <input class="full-width" />
+        </div>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-button mat-dialog-close>Close</button>
+        <button mat-button [mat-dialog-close]="true">Add</button>
     </div>
 </div>

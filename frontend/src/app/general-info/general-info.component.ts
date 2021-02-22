@@ -3,6 +3,7 @@ import {MatDialog, MatDialogRef } from '@angular/material/dialog'
 import { StocksService } from './../services/stocks.service'
 import { Sums } from './../interfaces/sums.interface'
 import { AddStockDialogComponent } from './add-stock-dialog/add-stock-dialog.component'
+import { Stock } from '../interfaces/stock.interface'
 
 @Component({
   selector: 'app-general-info',
@@ -15,16 +16,16 @@ export class GeneralInfoComponent implements OnInit {
     private stocksService: StocksService,
     public dialog: MatDialog
   ) { }
+
   sums: Sums
+  newStock: Stock
 
   ngOnInit(): void {
     this.stocksService.stocks.subscribe(() => this.sums = this.stocksService.sums)
   }
 
   openAddStockDialog() {
-    this.dialog.open(AddStockDialogComponent, {
-      //width: '250px',
-    })
+    const dialogRef = this.dialog.open(AddStockDialogComponent)
   }
 
 }

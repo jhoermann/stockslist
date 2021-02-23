@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Observable, Subject } from 'rxjs'
+import { Subject } from 'rxjs'
 import { Stock, EnhancedStock } from './../interfaces/stock.interface'
 import { Sums } from './../interfaces/sums.interface'
 import { StockHelper } from './../classes/stock-helper'
@@ -45,5 +45,14 @@ export class StocksService {
       .reduce((winLossA, winLossB) => winLossA + winLossB) + earnedDividends
     const winLossPercent = `${((winLoss / invested) * 100).toFixed(2)}%`
     this.sums = {total, totalInclDividends, earnedDividends, invested, winLoss, winLossPercent}
+  }
+
+  addStock(stock: Stock) {
+    return this.http.post<Stock>(this.baseUrl + '/stocks', stock)
+      .subscribe(stock => {
+        const stockHelper = new StockHelper(stock)
+        const enhancedStock = stockHelper.enhanceStock()
+        console.log(enhancedStock)
+      })
   }
 }

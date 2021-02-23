@@ -26,6 +26,9 @@ export class GeneralInfoComponent implements OnInit {
 
   openAddStockDialog() {
     const dialogRef = this.dialog.open(AddStockDialogComponent)
+    dialogRef.afterClosed().subscribe((newStock: Stock) => {
+      this.stocksService.addStock(newStock)
+    });
   }
 
 }

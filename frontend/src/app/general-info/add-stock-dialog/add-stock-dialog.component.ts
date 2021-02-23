@@ -16,7 +16,7 @@ export class AddStockDialogComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  newStock: Stock
+  newStock = {} as Stock
 
   onNoClick(): void {
     this.dialogRef.close();

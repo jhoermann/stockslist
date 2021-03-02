@@ -1,17 +1,21 @@
-interface CreateStockDto {
-    accountId: number,
-    name: string
-    isin: string
-    wkn: string
-    industrySector: string
+import { IsNotEmpty, IsNumber } from 'class-validator'
+import { PartialType } from '@nestjs/mapped-types'
+
+export class CreateStockDto {
+  @IsNumber()
+  accountId: string
+
+  @IsNotEmpty()
+  name: string
+
+  @IsNotEmpty()
+  isin: string
+
+  @IsNotEmpty()
+  wkn: string
+
+  @IsNotEmpty()
+  industrySector: string
 }
 
-interface UpdateStockDto {
-    accountId: number,
-    name: string
-    isin: string
-    wkn: string
-    industrySector: string
-}
-
-export { CreateStockDto, UpdateStockDto }
+export class UpdateStockDto extends PartialType(CreateStockDto) {}

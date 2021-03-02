@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing'
-import { INestApplication } from '@nestjs/common'
+import { INestApplication, ValidationPipe } from '@nestjs/common'
 import { _ } from 'lodash'
 import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
@@ -32,6 +32,9 @@ describe('StocksController (e2e)', () => {
     }).compile()
 
     app = moduleFixture.createNestApplication()
+    app.useGlobalPipes(new ValidationPipe({
+      whitelist: true,
+    }))
     await app.init()
   })
 
@@ -47,6 +50,19 @@ describe('StocksController (e2e)', () => {
       .get('/stocks/1')
       .expect(200)
       .expect(stocksService.getStock(1))
+  })
+
+  it('it rejects a Stock without required properties', () => {
+    const newStock = {
+      name: 'Cisco Inc.',
+      isin: 'US17275R1023',
+      wkn: '878841',
+      industrySector: 'Network',
+    }
+    return request(app.getHttpServer())
+      .post('/stocks')
+      .send(newStock)
+      .expect(400)
   })
 
   it('creates a new Stock', () => {
@@ -71,10 +87,10 @@ describe('StocksController (e2e)', () => {
   it('updates a Stock', () => {
     return request(app.getHttpServer())
       .put('/stocks/1')
-      .send({ quantity: 15 })
+      .send({ industrySector: 'IT' })
       .expect(200)
       .expect(res => {
-        if(res.body.quantity !== 15) {
+        if(res.body.industrySector !== 'IT') {
           throw new Error('Stock not updated')
         }
       })

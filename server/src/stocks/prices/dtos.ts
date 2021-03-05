@@ -1,6 +1,9 @@
-interface CreatePriceDto {
-    price: number
-    date: string
-}
+import { IsNotEmpty, IsNumber } from 'class-validator'
 
-export { CreatePriceDto }
+export class CreatePriceDto {
+  @IsNumber()
+  price: number
+
+  @IsNotEmpty()
+  date: string
+}

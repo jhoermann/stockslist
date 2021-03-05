@@ -1,11 +1,12 @@
-interface CreateDividendDateDto {
-    dividend: number
-    date: string
+import { IsNotEmpty, IsNumber } from 'class-validator'
+import { PartialType } from '@nestjs/mapped-types'
+
+export class CreateDividendDateDto {
+  @IsNumber()
+  dividend: number
+
+  @IsNotEmpty()
+  date: string
 }
 
-interface UpdateDividendDateDto {
-    dividend: number
-    date: string
-}
-
-export { CreateDividendDateDto, UpdateDividendDateDto }
+export class UpdateDividendDateDto extends PartialType(CreateDividendDateDto) {}

@@ -12,7 +12,7 @@ export default {
   connectDb(fileName:string): void {
     const adapter = new FileSync(fileName)
     this.db = low(adapter)
-    lodashId.createId = collection => Math.max(collection.map(item => item.id)) + 1
+    lodashId.createId = collection => _.max(collection.map(item => item.id)) + 1
     this.db._.mixin(lodashId)
   },
 

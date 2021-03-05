@@ -211,7 +211,7 @@ describe('StocksController (e2e)', () => {
 
   it('creates a new Price for a Stock', () => {
     const newPrice = {
-      dividend: 6500,
+      price: 6500,
       date: new Date().toJSON(),
     }
     return request(app.getHttpServer())

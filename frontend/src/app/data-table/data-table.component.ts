@@ -39,6 +39,13 @@ export class DataTableComponent implements OnInit {
   ) {}
   sums: Sums
 
+  getPercentWeight(stock: EnhancedStock) {
+    if(isNaN(stock.total) || isNaN(this.sums.total)) {
+      return '0%'
+    }
+    return `${((stock.total / this.sums.total) * 100).toFixed(2)}%`
+  }
+
   ngOnInit(): void {
     this.stocksService.stocks.subscribe(stocks => {
       this.sums = this.stocksService.sums

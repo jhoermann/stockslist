@@ -79,7 +79,7 @@
   <!-- Percent weight Column -->
   <ng-container matColumnDef="percentWeight">
     <mat-header-cell *matHeaderCellDef> Percent weight </mat-header-cell>
-    <mat-cell *matCellDef="let element"> {{((element.total / sums.total) * 100).toFixed(2)}}%</mat-cell>
+    <mat-cell *matCellDef="let element"> {{getPercentWeight(element)}}</mat-cell>
   </ng-container>
 
   <!-- Actions Column -->

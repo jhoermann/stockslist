@@ -12,7 +12,7 @@ export class StockHelper {
     this.stock.quantity = this.getCurrentQuantity(this.stock.actions)
     this.stock.buyPrice = this.calculateBuyPrice()
     this.stock.buyPriceTotal = (this.stock.buyPrice * this.stock.quantity)
-    this.stock.currentPrice = this.stock.prices[this.stock.prices.length -1].price
+    this.stock.currentPrice = this.stock.prices[this.stock.prices.length -1]?.price
     this.stock.total = this.stock.currentPrice * this.stock.quantity
     this.stock.winLoss = this.stock.total - this.stock.buyPriceTotal
     this.stock.winLossPercent = this.winLossInPercent()
@@ -43,6 +43,9 @@ export class StockHelper {
   }
 
   winLossInPercent(): string {
+    if(isNaN(this.stock.currentPrice)) {
+      return 'N/A'
+    }
     const winLossPercent: number = ((this.stock.currentPrice / this.stock.buyPrice) - 1) * 100
     return `${winLossPercent.toFixed(2)}%`
   }

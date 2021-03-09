@@ -19,9 +19,9 @@ interface EnhancedStock extends Stock {
     quantity: number
     buyPrice: number
     buyPriceTotal: number
-    currentPrice: number
-    total: number
-    winLoss: number
+    currentPrice?: number
+    total?: number
+    winLoss?: number
     winLossPercent: string
     earnedDividends: number
 }

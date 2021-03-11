@@ -10,8 +10,8 @@
       ],
       "parserOptions": {
         "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
+          "frontend/tsconfig.json",
+          "frontend/e2e/tsconfig.json"
         ],
         "createDefaultProgram": true
       },
@@ -21,6 +21,8 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
+        "semi": "off",
+        "@typescript-eslint/semi": ["error", "never"],
         "@angular-eslint/component-selector": [
           "error",
           {

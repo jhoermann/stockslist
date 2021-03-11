@@ -9,13 +9,15 @@ import { StockHelper } from './../classes/stock-helper'
   providedIn: 'root'
 })
 export class StocksService {
-  constructor(
-    private http: HttpClient,
-  ) {}
   private baseUrl = 'http://localhost:3000'
   private stocksSource = new Subject<EnhancedStock[]>()
   stocks = this.stocksSource.asObservable()
   sums: Sums
+
+  constructor(
+    private http: HttpClient,
+  ) {}
+
 
   getStocks() {
     return this.http.get<Stock[]>(this.baseUrl + '/accounts/1/stocks')
@@ -31,7 +33,7 @@ export class StocksService {
 
   calculateSums(stocks: EnhancedStock[]) {
     const total: number = stocks
-      .map(stock => stock.total)
+      .map(stock => stock.total || 0)
       .reduce((priceA, priceB) => priceA + priceB)
     const earnedDividends = stocks
       .map(stock => stock.earnedDividends)
@@ -41,14 +43,14 @@ export class StocksService {
       .map(stock => stock.buyPriceTotal)
       .reduce((priceA, priceB) => priceA + priceB)
     const winLoss: number = stocks
-      .map(stock => stock.winLoss)
+      .map(stock => stock.winLoss || 0)
       .reduce((winLossA, winLossB) => winLossA + winLossB) + earnedDividends
     const winLossPercent = `${((winLoss / invested) * 100).toFixed(2)}%`
     this.sums = {total, totalInclDividends, earnedDividends, invested, winLoss, winLossPercent}
   }
 
-  addStock(stock: Stock) {
-    return this.http.post<Stock>(this.baseUrl + '/stocks', stock)
+  addStock(newStock: Stock) {
+    return this.http.post<Stock>(this.baseUrl + '/stocks', newStock)
       .subscribe(stock => {
         const stockHelper = new StockHelper(stock)
         const enhancedStock = stockHelper.enhanceStock()

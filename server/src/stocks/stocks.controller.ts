@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Put, Delete, Param, Body, ParseIntPipe } from '@nestjs/common'
 import { Stock } from './stock.interface'
 import { CreateStockDto, UpdateStockDto } from './dtos'
-import { StocksService } from './stocks.service';
+import { StocksService } from './stocks.service'
 
 @Controller('stocks')
 export class StocksController {

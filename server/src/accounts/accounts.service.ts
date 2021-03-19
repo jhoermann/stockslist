@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable } from '@nestjs/common'
 import Database from '../database'
 import { Account } from './account.interface'
 

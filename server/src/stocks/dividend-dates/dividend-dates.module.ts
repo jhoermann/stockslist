@@ -1,6 +1,6 @@
-import { Module } from '@nestjs/common';
-import { DividendDatesController } from './dividend-dates.controller';
-import { DividendDatesService } from './dividend-dates.service';
+import { Module } from '@nestjs/common'
+import { DividendDatesController } from './dividend-dates.controller'
+import { DividendDatesService } from './dividend-dates.service'
 
 @Module({
   controllers: [DividendDatesController],

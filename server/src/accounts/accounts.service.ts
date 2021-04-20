@@ -1,16 +1,20 @@
 import { Injectable } from '@nestjs/common'
-import Database from '../database'
-import { Account } from './account.interface'
+import { InjectRepository } from '@nestjs/typeorm'
+import { Repository } from 'typeorm'
+import { Account } from './account.entity'
 
 @Injectable()
 export class AccountsService {
-    getAccounts(): Account[] {
-      return Database.db.get('Accounts').value()
+    constructor(
+      @InjectRepository(Account)
+      private accountsRepository: Repository<Account>
+    ) {}
+
+    findAll(): Promise<Account[]> {
+      return this.accountsRepository.find()
     }
 
-    getAccount(id: number): Account {
-      return Database.db.get('Accounts')
-        .find({id})
-        .value()
+    findOne(id: string): Promise<Account | undefined> {
+      return this.accountsRepository.findOne(id)
     }
 }

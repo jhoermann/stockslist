@@ -1,9 +1,9 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, ObjectIdColumn, ObjectID } from 'typeorm'
 
 @Entity()
 export class Account {
-  @PrimaryGeneratedColumn()
-  id: string
+  @ObjectIdColumn()
+  _id: ObjectID
 
   @Column()
   name: string

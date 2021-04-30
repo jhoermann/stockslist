@@ -1,6 +1,7 @@
-import { Controller, Get } from '@nestjs/common'
+import { Body, Controller, Get, Post } from '@nestjs/common'
 import { Account } from './account.entity'
 import { AccountsService } from './accounts.service'
+import { CreateAccountDto } from './dtos'
 
 @Controller('accounts')
 export class AccountsController {
@@ -18,9 +19,25 @@ export class AccountsController {
   async getAccount(id: string): Promise<Account | undefined> {
     return await this.accountsService.findOne(id)
   }
+  // Create Account
+  @Post()
+  createAccount(@Body() account: CreateAccountDto): Promise<Account> {
+    console.log(account)
+    return this.accountsService.create(account)
+  }
+  // // Update Account
+  // @Put(':id')
+  // updateAccount(@Param('id', ParseIntPipe) id: number, @Body() updateAccountDto: UpdateAccountDto): Account {
+  //   return this.accountsService.updateAccount(id, updateAccountDto)
+  // }
+  // // Remove Account
+  // @Delete(':id')
+  // removeAccount(@Param('id', ParseIntPipe) id: number) {
+  //   return this.accountsService.removeAccount(id)
+  // }
   // // Get Stocks by Account
   // @Get(':accountId/stocks')
   // getStocks(@Param('accountId', ParseIntPipe) accountId: number): Stock[] {
   //   return this.stocksService.getStocks(accountId)
-  // }
+  // } 
 }

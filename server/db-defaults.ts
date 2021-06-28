@@ -11,7 +11,6 @@ export default {
   },
   test: {
     Accounts: [{
-      id: 1,
       name: 'Default Account'
     }],
     Stocks: [{

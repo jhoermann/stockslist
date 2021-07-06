@@ -2,12 +2,12 @@ import { Test } from '@nestjs/testing'
 import { INestApplication, ValidationPipe } from '@nestjs/common'
 import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
-import { getManager, getRepository } from 'typeorm'
-import { Account } from '../src/accounts/account.entity'
+import { DatabaseTestService } from './database-test.service'
 import dbDefaults from '../db-defaults'
 
 describe('AccountsController (e2e)', () => {
   let app: INestApplication
+  let databaseTestService: DatabaseTestService
 
   beforeAll(async () => {
     const moduleRef = await Test.createTestingModule({
@@ -21,17 +21,28 @@ describe('AccountsController (e2e)', () => {
     }))
     await app.init()
 
-    const entityManager = getManager()
-    entityManager.clear(Account)
+    databaseTestService = new DatabaseTestService()
+  })
 
-    const accountRepository = getRepository(Account)
-    accountRepository.save(dbDefaults.test.Accounts[0])
+  beforeEach(async () => {
+    await databaseTestService.loadSampleData()
+  })
+
+  afterEach(async () => {
+    await databaseTestService.clearData()
   })
 
   it('gets all Accounts', () => {
     return request(app.getHttpServer())
       .get('/accounts')
       .expect(200)
-      .expect([])
+      .expect(res => {
+        const received = res.body
+        expect(received).toStrictEqual(dbDefaults.test.Accounts)
+      })
+  })
+
+  afterAll(async () => {
+    await app.close()
   })
 })

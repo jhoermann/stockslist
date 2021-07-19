@@ -25,16 +25,7 @@ export class AccountsController {
     console.log(account)
     return this.accountsService.create(account)
   }
-  // // Update Account
-  // @Put(':id')
-  // updateAccount(@Param('id', ParseIntPipe) id: number, @Body() updateAccountDto: UpdateAccountDto): Account {
-  //   return this.accountsService.updateAccount(id, updateAccountDto)
-  // }
-  // // Remove Account
-  // @Delete(':id')
-  // removeAccount(@Param('id', ParseIntPipe) id: number) {
-  //   return this.accountsService.removeAccount(id)
-  // }
+
   // // Get Stocks by Account
   // @Get(':accountId/stocks')
   // getStocks(@Param('accountId', ParseIntPipe) accountId: number): Stock[] {

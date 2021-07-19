@@ -4,6 +4,7 @@ import * as request from 'supertest'
 import { AppModule } from './../src/app.module'
 import { DatabaseTestService } from './database-test.service'
 import dbDefaults from '../db-defaults'
+import { idsToString } from './util'
 
 describe('AccountsController (e2e)', () => {
   let app: INestApplication
@@ -36,10 +37,7 @@ describe('AccountsController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/accounts')
       .expect(200)
-      .expect(res => {
-        const received = res.body
-        expect(received).toStrictEqual(dbDefaults.test.Accounts)
-      })
+      .expect(idsToString(dbDefaults.test.Accounts))
   })
 
   afterAll(async () => {
